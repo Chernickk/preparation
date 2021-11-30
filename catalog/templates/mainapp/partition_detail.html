@@ -1,6 +1,10 @@
 {% extends 'mainapp/base.html' %}
 
 {% block content %}
+
+    <h1>{{ object.name }}</h1>
+    <p>{{ object.description }}</p>
+
     <table class="table table-success table-striped">
         <thead>
             <tr>
@@ -13,16 +17,16 @@
             </tr>
         </thead>
         <tbody>
-            {% for object in object_list %}
+            {% for good in object.goods.all %}
                 <tr>
-                    <td>{{ object.name }}</td>
-                    <td>{{ object.arrived }}</td>
-                    <td>{{ object.price }}</td>
-                    <td>{{ object.quantity }}</td>
-                    <td>{{ object.supplier_name }}</td>
+                    <td>{{ good.name }}</td>
+                    <td>{{ good.arrived }}</td>
+                    <td>{{ good.price }}</td>
+                    <td>{{ good.quantity }}</td>
+                    <td>{{ good.supplier_name }}</td>
                     <td>
-                        {% if object.partitions.all|length != 0 %}
-                            {% for item in object.partitions.all %}
+                        {% if good.partitions.all|length != 0 %}
+                            {% for item in good.partitions.all %}
                                 <a href="/partition/{{item.id}}">{{ item.name }}</a>
                             {% endfor %}
                         {% else %}
