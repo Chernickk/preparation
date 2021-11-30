@@ -1,0 +1,27 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <td>Наименование</td>
+                <td>Дата поступления</td>
+                <td>Цена</td>
+                <td>Количество</td>
+                <td>Поставщик</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.arrived }}</td>
+                    <td>{{ object.price }}</td>
+                    <td>{{ object.quantity }}</td>
+                    <td>{{ object.supplier_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
