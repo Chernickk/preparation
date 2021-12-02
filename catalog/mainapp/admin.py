@@ -1,4 +1,5 @@
 from django.contrib import admin
-from mainapp.models import Good
+from .models import Good, Partition
 
 admin.site.register(Good)
+admin.site.register(Partition)
