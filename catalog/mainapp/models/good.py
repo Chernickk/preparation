@@ -11,6 +11,7 @@ class Good(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(Decimal('0'))])
     quantity = models.PositiveIntegerField()
     supplier_name = models.CharField(max_length=128)
+    image = models.ImageField(null=True)
     sites = models.ManyToManyField(Site)
     objects = models.Manager()
     on_site = CurrentSiteManager('sites')

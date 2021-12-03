@@ -128,3 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .idea/
+/db-data
+/catalog/media/*.png
+/catalog/media/*.jpg
+/catalog/static
