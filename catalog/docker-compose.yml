@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "test"
+      POSTGRES_USER: "testuser"
+      POSTGRES_PASSWORD: "testpsw"
+    volumes:
+      - ../db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+      
+  backend:
+    build: .
+    ports:
+      - 8089:8088
+    command: bash -c "
+      python manage.py migrate &&
+      gunicorn --bind 0.0.0.0:8088 catalog.wsgi"
+    depends_on:
+      - postgres
+    volumes:
+      - ./media:/media
+      - ./static:/static
+    restart: always
+  
+  nginx:
+    build: ./nginx
+    ports:
+      - 8088:80
+    depends_on:
+      - backend
+    volumes:
+      - ./media:/media
+      - ./static:/static
+    
